@@ -3,6 +3,13 @@ import numpy as np
 
 capture=cv2.VideoCapture(0)
 
+def findColors():
+    pass
+
+def findContours():
+    pass
+
+
 while True:
     ret,frame=capture.read()
     cv2.imshow("Pen",frame)
