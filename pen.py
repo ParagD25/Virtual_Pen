@@ -1,15 +1,13 @@
 import cv2
+import numpy as np
 
-fheight=480
-fwidth=640
-capture=cv2.VideoCapture(1)
-
-capture.set(3,fwidth)
-capture.set(4,fheight)
-capture.set(10,150)
+capture=cv2.VideoCapture(0)
 
 while True:
-    win,img=capture.read()
-    cv2.imshow("Pen",img)
+    ret,frame=capture.read()
+    cv2.imshow("Pen",frame)
     if cv2.waitKey(1) & 0xFF==ord('q'):
         break
+
+capture.release()
+cv2.destroyAllWindows()
