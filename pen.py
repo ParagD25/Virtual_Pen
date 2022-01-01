@@ -3,8 +3,12 @@ import numpy as np
 
 capture=cv2.VideoCapture(0)
 
-def findColors():
-    pass
+color=[]
+
+
+def findColors(img):
+    imgHSV=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+    
 
 def findContours():
     pass
