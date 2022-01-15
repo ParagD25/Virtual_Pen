@@ -18,24 +18,32 @@ colorVal=[[34,212,203],
     [47,47,237]
 ]
 
+myPoints=[]
 
-def findColors(img,colors,colorVal):
-    imgHSV=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+def findColors(frame,colors,colorVal):
+    frameHSV=cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
     count=0
+    myPoints=[]
     for color in colors:
         lower=np.array(color[0:3])
         upper=np.array(color[3:6])
 
-        mask=cv2.inRange(imgHSV,lower,upper)
+        mask=cv2.inRange(frameHSV,lower,upper)
         x,y=getContours(mask)
 
         cv2.circle(frame2,(x,y),5,colorVal[count],-1)
+        if x!=0 and y!=0:
+            myPoints.append([x,y,count])
+
         count+=1
         # cv2.imshow(str(color[0]),mask)
+    return myPoints
 
 def getContours(frame):
     contours,hierarchy=cv2.findContours(frame,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+
     x,y,w,h=0,0,0,0
+
     for cnt in contours:
         area=cv2.contourArea(cnt)
 
@@ -48,12 +56,23 @@ def getContours(frame):
             x,y,w,h=cv2.boundingRect(approx)
     return x+w//2,y
 
+def drawing(myPoints,colorVal):
+    for point in myPoints:
+        cv2.circle(frame2,(point[0],point[1]),5,colorVal[point[2]],-1)
+
 
 while True:
     ret,frame=capture.read()
     frame2=frame.copy()
 
-    findColors(frame,colors,colorVal)
+    myPoints=findColors(frame,colors,colorVal)
+
+    if len(myPoints)!=0:
+        for npo in myPoints:
+            myPoints.append(npo)
+
+    if len(myPoints)!=0:
+        drawing(myPoints,colorVal)
 
     cv2.imshow("Pen",frame2)
 
