@@ -1,5 +1,7 @@
 # Virtual Pen 🖊️
-An application where one can write on scren just using gestures.
+An application where one can draw on screen by just using Gestures.
+
+Pen's color is been detected and is been used as an ink for drawing on screen.
 
 ## Prerequisites 📋
 
@@ -8,7 +10,9 @@ You'll need [Git](https://git-scm.com) and [Python](https://www.python.org/) ins
 [![](https://camo.githubusercontent.com/2fb0723ef80f8d87a51218680e209c66f213edf8/68747470733a2f2f666f7274686562616467652e636f6d2f696d616765732f6261646765732f6d6164652d776974682d707974686f6e2e737667)](https://python.org)
 
 
-## Framework Used 📁:
+## Libraries Used 📁:
+- Open-CV
+- Numpy
 
 
 ## How To Use 🔧:
